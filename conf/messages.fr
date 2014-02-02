@@ -1,0 +1,21 @@
+title=Meatbros
+
+signin=Se connecter
+
+login=Connexion
+
+Home = Accueil
+Hot = Populaires
+Latest = Nouveaux
+Login = Connexion
+Logout = Déconnexion
+HowItWorks = Comment ça marche ?
+Search = Rechercher
+MyAccount = Mon compte
+Team = L'équipe
+Website = Site web
+
+index.search = Chercher un bro
+search.nothing = Aucun bro trouvé ! Merci de ressayer !
+
+by = de

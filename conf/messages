@@ -1,0 +1,21 @@
+title=Meatbros
+
+signin=Sign In
+
+login=login
+
+Home = Home
+Hot = Hot
+Latest = Latest
+Login = Login
+Logout = Logout
+HowItWorks = How it works ?
+Search = Search
+MyAccount = My Account
+Team = Team
+Website = Website
+
+index.search = Search a bro...
+search.nothing = No result was found ! Please try another request !
+
+by = by

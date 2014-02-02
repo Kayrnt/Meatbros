@@ -15,7 +15,7 @@ object Build extends Build {
     "javax.mail" % "mail" % "1.4.7",
     "net.tanesha.recaptcha4j" % "recaptcha4j" % "0.0.7",
     "com.google.code.gson" % "gson" % "2.2.4",
-    "securesocial" %% "securesocial" % "master-SNAPSHOT",
+    "ws.securesocial" %% "securesocial" % "2.1.3",
     "postgresql" % "postgresql" % "9.1-901.jdbc4"
   )
 
