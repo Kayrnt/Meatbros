@@ -3,10 +3,9 @@
             <div class="card">
             <div class="face front">
                 @bro.broGifUuid match {
-                 case Some(uuid) => {
-                <img class="face-img border-round"
-                                         src="@routes.Assets.at("gifs/@uuid.gif")"/>
-                    }
+                case Some(uuid) => {
+                <img class="face-img border-round" src="/static/gifs/@{uuid}.gif"/>
+                }
                  case None => {
                 <img class="face-img border-round"
                                      src="@routes.Assets.at("images/unknown.png")"/>
