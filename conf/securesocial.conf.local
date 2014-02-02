@@ -1,0 +1,147 @@
+smtp {
+    host=smtp.gmail.com
+    #port=25
+    ssl=true
+    user="XXX@gmail.com"
+    password=XXX
+    from="xxx@gmail.com"
+}
+
+securesocial {
+    #
+    # Where to redirect the user if SecureSocial can't figure that out from
+    # the request that was received before authenticating the user
+    #
+    onLoginGoTo=/
+
+    #
+    # Where to redirect the user when he logs out. If not set SecureSocial will redirect to the login page
+    #
+    onLogoutGoTo=/login
+
+    #
+    # Enable SSL
+    #
+    ssl=false
+
+    #
+    # The controller class for assets. This is optional, only required
+    # when you use a custom class for Assets.
+    #
+    #assetsController=controllers.ReverseMyCustomAssetsController
+
+    cookie {
+    		#
+    		# The cookie name (defaults to 'id')
+    		#name=id
+
+    		#
+    		# The path for which the cookie should be sent by the browser (defaults to /)
+    		#
+    		#path=/
+
+    		#
+    		# The domain for which the cookie should be sent (it is left empty by default)
+    		#
+    		#domain=some_domain
+
+    		#
+    		# If set to true, the cookie is not readable by a client side script (defaults to true).
+    		#
+    		#httpOnly=true
+
+    		#
+    	        # The amount of time the session id will remain valid since the last request
+    		#
+    		idleTimeoutInMinutes=30
+
+    		#
+    		# The amount of time the session id will be valid since the user authenticated.
+    		# After this the user will need to re-authenticate
+    		#
+    		absoluteTimeOutInMinutes=720
+    	}
+
+    userpass {
+        withUserNameSupport=true
+        sendWelcomeEmail=true
+        enableGravatarSupport=true
+        signupSkipLogin=true
+        tokenDuration=60
+        tokenDeleteInterval=5
+        minimumPasswordLength=8
+        enableTokenJob=true
+        hasher=bcrypt
+    }
+
+    google {
+        authorizationUrl="https://accounts.google.com/o/oauth2/auth"
+        accessTokenUrl="https://accounts.google.com/o/oauth2/token"
+        clientId=
+        clientSecret=
+        scope="https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email"
+    }
+
+    twitter {
+        requestTokenUrl="https://twitter.com/oauth/request_token"
+        accessTokenUrl="https://twitter.com/oauth/access_token"
+        authorizationUrl="https://twitter.com/oauth/authenticate"
+        consumerKey=
+        consumerSecret=
+    }
+
+    facebook {
+        authorizationUrl="https://graph.facebook.com/oauth/authorize"
+        accessTokenUrl="https://graph.facebook.com/oauth/access_token"
+        clientId=
+        clientSecret=
+        # this scope is the minimum SecureSocial requires.  You can add more if required by your app.
+        scope=email
+    }
+
+    linkedin {
+        requestTokenUrl="https://api.linkedin.com/uas/oauth/requestToken"
+        accessTokenUrl="https://api.linkedin.com/uas/oauth/accessToken"
+        authorizationUrl="https://api.linkedin.com/uas/oauth/authenticate"
+        consumerKey=your_consumer_key
+        consumerSecret=your_consumer_secret
+    }
+
+    github {
+        authorizationUrl="https://github.com/login/oauth/authorize"
+        accessTokenUrl="https://github.com/login/oauth/access_token"
+        clientId=your_client_id
+        clientSecret=your_client_secret
+    }
+
+    foursquare {
+        authorizationUrl="https://foursquare.com/oauth2/authenticate"
+        accessTokenUrl="https://foursquare.com/oauth2/access_token"
+        clientId=your_client_id
+        clientSecret=your_client_secret
+    }
+
+    xing {
+        requestTokenUrl="https://api.xing.com/v1/request_token"
+        accessTokenUrl="https://api.xing.com/v1/access_token"
+        authorizationUrl="https://api.xing.com/v1/authorize"
+        consumerKey=your_consumer_key
+        consumerSecret=your_consumer_secret
+    }
+
+    instagram {
+        authorizationUrl="https://api.instagram.com/oauth/authorize"
+        accessTokenUrl="https://api.instagram.com/oauth/access_token"
+        clientId=your_client_id
+        clientSecret=your_client_secret
+    }
+
+    vk {
+        authorizationUrl="http://oauth.vk.com/authorize"
+        accessTokenUrl="https://oauth.vk.com/access_token"
+        clientId=your_client_id
+        clientSecret=your_client_secret
+    }
+
+}
+

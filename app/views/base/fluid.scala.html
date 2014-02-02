@@ -1,0 +1,7 @@
+@(title: String, css: Html = Html(""), user: securesocial.core.Identity = null)(content: Html)
+@maintemplate(title, css, user) {
+
+        <div id="main" class="container-fluid">
+        @content
+        </div>
+}

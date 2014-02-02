@@ -1,0 +1,85 @@
+@(id: Long, user: models.Person = null, myForm: Form[UserForm])
+@import bootstrap3._
+@import helper._
+@base.main("Edit Account", null, user) {
+<div class="pagination-centered login-box">
+    <h1>Edit Account</h1>
+
+    @views.html.account.upload.render(if(user == null) None else user.broGifUuid)
+
+    @helper.form(routes.BroController.update, 'class -> "form-horizontal") {
+
+    <fieldset>
+
+        @radiobuttons(
+        myForm("isMale"),
+        options = options("true"->"Male","false"->"Female"),
+        label = "Gender")
+
+        @text(myForm("broname"),
+        label = "Broname",
+        placeholder = "Broname",
+        help = "Please enter your Broname")
+
+        @text(myForm("twitter"),
+        label = "Twitter",
+        placeholder = "Twitter account")
+
+        @text(myForm("facebook"),
+        label = "Facebook",
+        placeholder = "Facebook account")
+
+        @text(myForm("instagram"),
+        label = "Instagram",
+        placeholder = "Instagram account")
+
+        @text(myForm("website"),
+        label = "Website",
+        placeholder = "Website account")
+
+        @text(myForm("nationality"),
+        label = "Nationality",
+        placeholder = "Nationality account")
+
+        @radiobuttons(
+        myForm("isActive"),
+        options = options("true"->"Yes","false"->"No"),
+        label = "Show profile ?")
+
+
+    </fieldset>
+
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button id="submit" type="submit" value="Submit" class="btn btn-primary">Submit</button>
+            <button id="cancel" class="btn btn-default">Cancel</button>
+        </div>
+    </div>
+
+    }
+
+    @helper.form(routes.BroController.delete(), 'class -> "topRight") {
+
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <input type="submit" value="Delete account" class="btn btn-danger col-sm-3" style="margin-top: 30px">
+        </div>
+    </div>
+    }
+
+    }
+</div>
+<script>
+    $(function () {
+        $('#fileupload').fileupload({
+            dataType: 'json',
+            add: function (e, data) {
+                data.context = $('<p/>').text('Uploading...').appendTo(document.body);
+                data.submit();
+            },
+            done: function (e, data) {
+                data.context.text('Upload finished.');
+            }
+        });
+    });
+</script>

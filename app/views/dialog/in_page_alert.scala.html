@@ -1,0 +1,19 @@
+@(alert: InPageAlert)
+
+
+<div class="alert
+@alert.alertType match {
+    case models.InPageAlertType.ERROR => {
+        alert-error
+        }
+    case models.InPageAlertType.INFO => {
+        alert-info
+        }
+    case models.InPageAlertType.SUCCESS => {
+        alert-success
+        }
+}
+    ">
+<a class="close" data-dismiss="alert">×</a>
+<div class="text-center">@alert.text</div>
+</div>

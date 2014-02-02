@@ -1,0 +1,32 @@
+@(uuidOpt: Option[String])
+
+<script>function changeImg() {$("#fileuploadDiv").toggle()}</script>
+<h2>Upload a bro gif of you</h2>
+@uuidOpt match {
+       case Some(uuid) => {
+        <div id="broImage"><img height="101" width="135" src="/static/gifs/@{uuid}.gif"></div>
+        <br/>
+        }
+       case None => {
+       <div id="broImage"></div>
+        }
+      }
+<button id="changeImg" class="btn btn-default" onclick="changeImg()">Change gif</button><br/>
+<div id="fileuploadDiv" style="display: none;">
+<!-- The fileinput-button span is used to style the file input field as button -->
+<span class="btn btn-success fileinput-button">
+        <i class="glyphicon glyphicon-plus"></i>
+        <span>Add files...</span>
+        <!-- The file input field used as target for the file upload widget -->
+        <input id="fileupload" type="file" name="files[]">
+    </span>
+<br>
+<br>
+<!-- The global progress bar -->
+<div id="progress" class="progress">
+    <div class="progress-bar progress-bar-success"></div>
+</div>
+<!-- The container for the uploaded files -->
+<div id="files" class="files"></div>
+<br>
+</div>

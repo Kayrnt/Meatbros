@@ -1,0 +1,30 @@
+@(bro : Person)
+<div class="flip col-md-3">
+            <div class="card">
+            <div class="face front">
+                @bro.broGifUuid match {
+                 case Some(uuid) => {
+                <img class="face-img border-round"
+                                         src="@routes.Assets.at("gifs/@{uuid}.gif")"/>
+                    }
+                 case None => {
+                <img class="face-img border-round"
+                                     src="@routes.Assets.at("images/unknown.png")"/>
+                    }
+                }
+
+            </div>
+            <div class="face back">
+                <div class="c-table">
+                    <div class="c-item card-size border-round">
+                <div><span class="fa @if(bro.isMale){fa-male} else {fa-female}"/> @bro.broname</div>
+                        @bro.facebook.map { x => <div><span class="fa fa-facebook"/><a class="spacer" href="https://www.facebook.com/@x">@x</a></div>}
+                        @bro.twitter.map { x => <div><span class="fa fa-twitter"/><a class="spacer" href="https://www.twitter.com/@x">@x</a></div>}
+                        @bro.instagram.map { x => <div><span class="fa fa-instagram"/><a class="spacer" href="https://www.instagram.com/@x">@x</a></div>}
+                        @bro.website.map{ x => <div><span class="fa fa-globe"/><a class="spacer" href="@x">@Messages("Website")</a></div>}
+                        @bro.nationality.map { x => <div><span class="fa fa-flag"/><span class="spacer">@x</span></div>}
+                    </div>
+                </div>
+        </div>
+    </div>
+</div>

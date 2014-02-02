@@ -1,0 +1,122 @@
+.flip {
+  -webkit-perspective: 800;
+  -ms-perspective: 800;
+  -moz-perspective: 800;
+  -o-perspective: 800;
+  height: 150px;
+  position: relative;
+  margin: 50px auto;
+}
+
+.flip .card.flipped {
+  transform:rotatey(-180deg);
+  -ms-transform:rotatey(-180deg); /* IE 9 */
+  -moz-transform:rotatey(-180deg); /* Firefox */
+  -webkit-transform:rotatey(-180deg); /* Safari and Chrome */
+  -o-transform:rotatey(-180deg); /* Opera */
+}
+.flip .card {
+  -webkit-transform-style: preserve-3d;
+  -webkit-transition: 0.5s;
+  -moz-transform-style: preserve-3d;
+  -moz-transition: 0.5s;
+  -ms-transform-style: preserve-3d;
+  -ms-transition: 0.5s;
+  -o-transform-style: preserve-3d;
+  -o-transition: 0.5s;
+  transform-style: preserve-3d;
+  transition: 0.5s;
+}
+.flip .card .face {
+  position: absolute;
+  z-index: 2;
+  font-family: Georgia;
+  font-size: 1em;
+  text-align: center;
+  line-height: 1em;
+  backface-visibility: hidden;  /* W3C */
+  -webkit-backface-visibility: hidden; /* Safari & Chrome */
+  -moz-backface-visibility: hidden; /* Firefox */
+  -ms-backface-visibility: hidden; /* Internet Explorer */
+  -o-backface-visibility: hidden; /* Opera */
+
+}
+
+.face {
+  width: 100%;
+}
+
+.border-round {
+  border-radius: 10px;
+}
+
+.face-img {
+  height : 150px;
+  width: 200px;
+}
+
+.card-size {
+  background: white;
+  height: 150px;
+  width: 200px;
+}
+
+.flip .card .front {
+  position: absolute;
+  z-index: 1;
+  cursor: pointer;
+}
+
+.flip .card .back {
+
+  color: black;
+  cursor: pointer;
+
+  transform:rotatey(-180deg);
+  -ms-transform:rotatey(-180deg); /* IE 9 */
+  -moz-transform:rotatey(-180deg); /* Firefox */
+  -webkit-transform:rotatey(-180deg); /* Safari and Chrome */
+  -o-transform:rotatey(-180deg); /* Opera */
+}
+
+/* This parent can be any width and height */
+.block {
+  text-align: center;
+}
+
+/* The ghost, nudged to maintain perfect centering */
+.block:before {
+  content: '';
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+  margin-right: -0.25em; /* Adjusts for spacing */
+}
+
+/* The element to be centered, can
+   also be of any width and height */
+.centered {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.c-table {
+  display: table;
+  width: 200px;
+  margin: 0px auto;
+}
+
+.c-item {
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.c-item > div {
+  margin : 5px;
+  max-width: 200px;
+}
+
+.spacer {
+  margin-left: 5px;
+}
