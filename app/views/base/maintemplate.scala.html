@@ -69,16 +69,18 @@
                     }
                     <a href="@routes.Application.latest()">@Messages("Latest")</a>
 
+                <li class="navbar-form navbar-right">
+                    <form action="/s">
+                        <div class="input-group" style="max-width: 200px">
+                            <input class="form-control" type="text" name="q" placeholder="@Messages(" Search")">
+                            <span class="input-group-addon"><i class="fa fa-search icon-black"></i></span>
+                        </div>
+                    </form>
+                </li>
+
             </ul>
 
-            <ul class="navbar-form navbar-right">
-                <form action="/s">
-                    <div class="input-group" style="max-width: 200px">
-                        <input class="form-control" type="text" name="q" placeholder="@Messages(" Search")">
-                        <span class="input-group-addon"><i class="fa fa-search icon-black"></i></span>
-                    </div>
-                </form>
-            </ul>
+
 
         </div>
     </div>

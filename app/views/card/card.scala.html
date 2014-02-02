@@ -5,7 +5,7 @@
                 @bro.broGifUuid match {
                  case Some(uuid) => {
                 <img class="face-img border-round"
-                                         src="@routes.Assets.at("gifs/@{uuid}.gif")"/>
+                                         src="@routes.Assets.at("gifs/@uuid.gif")"/>
                     }
                  case None => {
                 <img class="face-img border-round"
