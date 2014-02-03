@@ -25,9 +25,7 @@ class PGUserService(application: play.api.Application) extends UserServicePlugin
   
   def save(ssUser: Identity): Identity = {
     Logger.info("[PGUserService] save "+ssUser)
-    val person = Person.findByEmailSocialProvider(
-      ssUser.email.getOrElse(""),
-      ssUser.identityId.providerId)
+    val person = Person.findByUserId(ssUser.identityId)
     person.fold(Person.fromIdentity(ssUser))(Person.updatefromIdentity(ssUser, _))
 
   }
@@ -49,5 +47,6 @@ class PGUserService(application: play.api.Application) extends UserServicePlugin
   def deleteTokens() = SecureSocialToken.deleteAll 
 
   def deleteExpiredTokens() = SecureSocialToken.deleteExpired
+
 }
 

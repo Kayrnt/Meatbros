@@ -124,7 +124,7 @@ object Person {
 
   def findByIdentity(identity: Identity): Option[Person] =
     inTransaction {
-      findByEmailSocialProviderQ(identity.email.getOrElse(""), identity.identityId.providerId).toList.headOption
+      findByEmailSocialProviderQ(identity.email.orNull, identity.identityId.providerId).toList.headOption
     }
 
 

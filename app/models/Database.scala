@@ -28,9 +28,10 @@ object Database extends Schema with  PrimitiveTypeMode {
   on(oauth1InfoTable) { x => declare {
     x.id is(autoIncremented("oauth1_credential_sets_id_seq"), primaryKey)
   }}
-  
+
   on(oauth2InfoTable) { x => declare {
     x.id is(autoIncremented("oauth2_credential_sets_id_seq"), primaryKey)
+    x.access_token is(indexed, dbType("text"))
   }}
   
   on(passwordInfoTable) { x => declare {
