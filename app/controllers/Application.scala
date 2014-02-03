@@ -3,12 +3,12 @@ package controllers
 import _root_.java.net.{URISyntaxException, URI}
 
 import models._
-import helpers.SquerylEntryPoint._
 import securesocial.core._
 
 import play.api._
 import play.api.mvc._
 import views._
+import Database._
 
 object Application extends Controller with securesocial.core.SecureSocial {
 
@@ -24,7 +24,11 @@ object Application extends Controller with securesocial.core.SecureSocial {
   }
 
   def homeContent(user: Option[Identity], inPageAlert: InPageAlert = null) = {
-    val db = inTransaction { Database.peopleTable.where(p => p.isActive === true).iterator.toList }
+    val db = inTransaction { from(Database.peopleTable)(p =>
+      where(p.isActive === true)
+      select p
+      orderBy rand()
+    ).iterator.toList }
     Ok(html.index(user.orNull, db, inPageAlert))
   }
 

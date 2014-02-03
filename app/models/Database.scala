@@ -2,9 +2,10 @@
 
 package models
 
-import org.squeryl.{Session, PrimitiveTypeMode, Schema}
+import org.squeryl.{PrimitiveTypeMode, Schema}
 import helpers.SquerylEntryPoint._
-import play.api.Logger
+import org.squeryl.internals._
+import org.squeryl.dsl.ast._
 
 object Database extends Schema with  PrimitiveTypeMode {
   val peopleTable  = table[Person]("people")
@@ -45,9 +46,19 @@ object Database extends Schema with  PrimitiveTypeMode {
   /*try {
     create
   printDdl(s => println(""+s))
-  Session.currentSession.setLogger(msg => Logger.info(msg))
+//  Session.currentSession.setLogger(msg => Logger.info(msg))
   } catch {
     case e : Throwable => println(" "+e.getMessage)
   }*/
+
+  class RandomFunction()
+    extends FunctionNode("rand()",Nil) {
+    override def doWrite(sw: StatementWriter) = {
+      sw.write(name)
+    }
+  }
+
+  def rand() = new RandomFunction()
+
 }
 
