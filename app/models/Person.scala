@@ -6,6 +6,7 @@
  */
 package models
 
+import _root_.java.io.File
 import helpers.SquerylEntryPoint._
 import org.squeryl.Query
 import org.squeryl.dsl._
@@ -96,6 +97,7 @@ object Person {
     personToOAuth2Info.left(person).deleteAll
     personToPasswordInfo.left(person).deleteAll
     peopleTable.deleteWhere(p => p.id === person.id)
+    new File("static/gifs/"+person.broGifUuid+".gif").delete()
   }
 
   def update(id: Long, form: UserForm) = inTransaction {
@@ -172,9 +174,9 @@ object Person {
 
   def updatefromIdentity(i: Identity, from: Person): Person = inTransaction {
     val p = from.copy(from.id, i.identityId.userId, i.authMethod.method,
-      i.identityId.providerId, i.avatarUrl, None, from.isMale, i.firstName,
-      i.lastName, i.firstName + " " + i.fullName, i.email,
-      None, from.broname, from.twitter, from.facebook, from.instagram,
+      i.identityId.providerId, i.avatarUrl, from.broGifUuid, from.isMale, i.firstName,
+      i.lastName, i.firstName + " " + i.fullName, i.email.orElse(from.email),
+      from.phone_number, from.broname, from.twitter, from.facebook, from.instagram,
       from.website, from.nationality, from.isActive, from.isEmailVisible)
     Person.update(p) // Get id to associate OAuth objects
 

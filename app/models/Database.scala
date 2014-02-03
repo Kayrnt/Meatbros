@@ -41,11 +41,13 @@ object Database extends Schema with  PrimitiveTypeMode {
   on(secureSocialTokenTable) { x => declare {
     x.uuid is(primaryKey)
   }}
-  try {
-  create
+
+  /*try {
+    create
+  printDdl(s => println(""+s))
   Session.currentSession.setLogger(msg => Logger.info(msg))
   } catch {
     case e : Throwable => println(" "+e.getMessage)
-  }
+  }*/
 }
 
