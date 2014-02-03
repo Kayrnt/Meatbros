@@ -5,8 +5,6 @@ import _root_.java.net.{URISyntaxException, URI}
 import models._
 import helpers.SquerylEntryPoint._
 import securesocial.core._
-import play.Logger
-import scala.Some
 
 import play.api._
 import play.api.mvc._

@@ -112,7 +112,6 @@ object Person {
           nationality = form.nationality,
           isActive = form.isActive
         )
-        println(" update : " + person)
         peopleTable.update(person)
     }
   }
@@ -122,11 +121,7 @@ object Person {
       findByEmailSocialProviderQ(email, socialProvider).toList.headOption
     }
 
-  def findByIdentity(identity: Identity): Option[Person] =
-    inTransaction {
-      findByEmailSocialProviderQ(identity.email.orNull, identity.identityId.providerId).toList.headOption
-    }
-
+  def findByIdentity(identity: Identity): Option[Person] = findByUserId(identity.identityId)
 
   def findByBroId(id: Long): Option[Person] = inTransaction {
     findByBroIdQ(id).toList.headOption

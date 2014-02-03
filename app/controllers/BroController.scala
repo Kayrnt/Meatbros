@@ -18,7 +18,7 @@ object BroController extends Controller with securesocial.core.SecureSocial {
   def account() = UserAwareAction {
     implicit request =>
       val person = request.user.map(u => Person.
-        findByEmailSocialProvider(u.email.getOrElse(""), u.identityId.providerId)).flatten
+        findByUserId(u.identityId)).flatten
 
       person.fold(Redirect("/")) {
         p =>
@@ -55,8 +55,7 @@ object BroController extends Controller with securesocial.core.SecureSocial {
     implicit request =>
       request.user.fold(Redirect(securesocial.controllers.routes.LoginPage.logout())) {
         u =>
-          Person.findByEmailSocialProvider(u.email.getOrElse(""),
-            u.identityId.providerId).map(Person.delete)
+          Person.findByUserId(u.identityId).map(Person.delete)
           Redirect(securesocial.controllers.routes.LoginPage.logout())
       }
   }
