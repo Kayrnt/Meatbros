@@ -52,7 +52,7 @@ object Database extends Schema with  PrimitiveTypeMode {
   }*/
 
   class RandomFunction()
-    extends FunctionNode("rand()",Nil) {
+    extends FunctionNode("random()",Nil) {
     override def doWrite(sw: StatementWriter) = {
       sw.write(name)
     }
