@@ -53,8 +53,8 @@ object Database extends Schema with  PrimitiveTypeMode {
   }}
   
   try {
-    create
-  printDdl(s => println(""+s))
+//    create
+//  printDdl(s => println(""+s))
 //  Session.currentSession.setLogger(msg => Logger.info(msg))
   } catch {
     case e : Throwable => println(" "+e.getMessage)
