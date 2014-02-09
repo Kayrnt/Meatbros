@@ -4,7 +4,6 @@
 
 # Default path will just redirect to the computer list
 GET         /                       controllers.Application.index
-GET         /hot                    controllers.Application.hot()
 GET         /latest                 controllers.Application.latest()
 GET         /bro                    controllers.BroController.account()
 POST        /bro                    controllers.BroController.update()
@@ -13,6 +12,10 @@ POST        /bro/delete             controllers.BroController.delete()
 GET         /bro/upload             controllers.Upload.fileUploaderGet()
 GET         /search/:searchString   controllers.Application.search(searchString)
 GET         /s                      controllers.Application.searchBox()
+
+POST        /bro/toplist            controllers.TopListController.apply()
+GET        /bro/toplist             controllers.TopListController.edit()
+GET        /bro/toplist/:id         controllers.TopListController.list(id: Long)
 
 # Login page
 GET     /login                      securesocial.controllers.LoginPage.login

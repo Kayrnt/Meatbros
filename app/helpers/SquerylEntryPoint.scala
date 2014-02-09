@@ -35,8 +35,14 @@ object SquerylEntryPoint extends org.squeryl.PrimitiveTypeMode {
   
   implicit object SecureSocialTokenKED extends KeyedEntityDef[SecureSocialToken, String] {
     def getId(t: SecureSocialToken) = t.uuid
-    def isPersisted(t: SecureSocialToken) = false  	// ??
+    def isPersisted(t: SecureSocialToken) = false
     def idPropertyName = "uuid"
+  }
+
+  implicit object TopListPersonKED extends KeyedEntityDef[TopListPerson, Long] {
+    def getId(t: TopListPerson) = t.id
+    def isPersisted(t: TopListPerson) = t.id > 0
+    def idPropertyName = "id"
   }
   
   // jodatime conversions to/from SQL

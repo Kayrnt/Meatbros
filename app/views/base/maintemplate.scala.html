@@ -55,14 +55,7 @@
                     <a href="/"><span class="fa fa-home"/></a>
                 </li>
                 @views.html.base.login_dropdown.render(user)
-                @if(title.equals("Hot")) {
-                <li class="active">
-                    } else {
-                <li>
-                    }
-                    <a href="@routes.Application.hot()">@Messages("Hot")</a>
-                </li>
-                @if(title.equals("LatestLists")) {
+                @if(title.equals("Latest")) {
                 <li class="active">
                     } else {
                 <li>

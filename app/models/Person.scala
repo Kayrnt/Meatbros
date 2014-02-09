@@ -7,6 +7,7 @@
 package models
 
 import _root_.java.io.File
+import _root_.java.sql.Timestamp
 import helpers.SquerylEntryPoint._
 import org.squeryl.Query
 import org.squeryl.dsl._
@@ -35,7 +36,8 @@ case class Person(id: Long, user_id: String,
                   website: Option[String],
                   nationality: Option[String],
                   isActive: Boolean,
-                  isEmailVisible: Boolean) extends securesocial.core.Identity {
+                  isEmailVisible: Boolean,
+                   creationDate: Timestamp) extends securesocial.core.Identity {
 
   lazy val oauth1CredentialSets: OneToMany[OAuth1CredentialSet] =
     Database.personToOAuth1Info.left(this)
@@ -137,7 +139,7 @@ object Person {
     val p = Person(0, i.identityId.userId, i.authMethod.method,
       i.identityId.providerId, i.avatarUrl, None, true, i.firstName,
       i.lastName, i.firstName + " " + i.fullName, i.email,
-      None, None, None, None, None, None, None, false, false)
+      None, None, None, None, None, None, None, false, false, new Timestamp(System.currentTimeMillis()))
     Person.insert(p) // Get id to associate OAuth objects
 
     // Save the three associated elements of Identity trait (oauth info, passwords)
@@ -177,7 +179,7 @@ object Person {
       i.identityId.providerId, i.avatarUrl, from.broGifUuid, from.isMale, i.firstName,
       i.lastName, i.firstName + " " + i.fullName, i.email.orElse(from.email),
       from.phone_number, from.broname, from.twitter, from.facebook, from.instagram,
-      from.website, from.nationality, from.isActive, from.isEmailVisible)
+      from.website, from.nationality, from.isActive, from.isEmailVisible, from.creationDate)
     Person.update(p) // Get id to associate OAuth objects
 
     // Save the three associated elements of Identity trait (oauth info, passwords)

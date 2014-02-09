@@ -23,17 +23,14 @@ object UserForm {
   play.api.data.Mapping[Boolean] = {
     mapping.transform[Boolean](
       s => {
-//        println("textToBool S : "+s)
         if(s == "true") true else false
       },
       b => {
-//        println("textToBool B : "+b)
         if(b)"true"else "false"
       })
   }
 
   def boolToText(b : Boolean) : String = {
-//    println("boolean to text: "+b)
     if(b) "true" else "false"
   }
 
@@ -55,8 +52,5 @@ object UserForm {
       "isActive" -> textToBool(text)
     )(UserForm.apply)(UserForm.unapply)
   )
-
-//  val anyData = Map("name" -> "bob", "age" -> "18")
-//  val user: UserForm = userForm.bind(anyData).get
 
 }

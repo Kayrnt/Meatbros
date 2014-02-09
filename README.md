@@ -1,14 +1,17 @@
 Meatbros
 ==============================
 
-This project is an meatspace oriented public repertory with animated gif. People register their account and put their personal informations.
+This project is a Meatspace oriented public repertory with animated gif. People register their account and put their personal informations.
 
 Using it
 --------
 
 * Download [the latest playframework version] (http://www.playframework.com/). The version 2.2.1 is used in this sample.
-* Run this application with it ('play run' in the root directory) 
+* Run rename conf/securesocial.conf.local to securesocial.conf
+* Run this application with it ('play run' in the root directory)
 * Go to [http://localhost:9000/](http://localhost:9000/)
+
+You can respecify your production database in database.conf if you create it (overriding the setup from application.conf)
 
 Libraries used
 --------
