@@ -9,7 +9,6 @@ package helpers
 import securesocial.core.{IdentityId, UserServicePlugin, Identity}
 import securesocial.core.providers.Token
 import models.{Person, SecureSocialToken}
-import helpers.SquerylEntryPoint
 import play.Logger
 
 class PGUserService(application: play.api.Application) extends UserServicePlugin(application) { 

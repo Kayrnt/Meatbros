@@ -9,8 +9,10 @@ import securesocial.core.{Authenticator, Identity, UserService}
 import org.specs2.execute.{Result, AsResult}
 import play.api.test.{WithApplication, FakeApplication}
 import org.specs2.mock.Mockito
+import play.api.test._
+import play.api.test.Helpers._
 
-abstract class WithLoggedUser(override val app: FakeApplication = FakeApplication(),val identity:Option[Identity]=None) extends WithApplication(app) with Mockito {
+abstract class WithLoggedUser(override val app: FakeApplication = WithLoggedUser.minimalApp,val identity:Option[Identity]=None) extends WithApplication(app) with Mockito {
 
   lazy val user = identity getOrElse SocialUserGenerator.socialUser()
   lazy val mockUserService=mock[UserService]
@@ -31,5 +33,5 @@ abstract class WithLoggedUser(override val app: FakeApplication = FakeApplicatio
 object WithLoggedUser{
   val excludedPlugins = List( "securesocial.core.DefaultAuthenticatorStore" )
   val includedPlugins = List( "securesocial.testkit.FakeAuthenticatorStore" )
-  def minimalApp = FakeApplication(withoutPlugins=excludedPlugins,additionalPlugins = includedPlugins)
+  def minimalApp = FakeApplication(additionalConfiguration = inMemoryDatabase(), withoutPlugins=excludedPlugins,additionalPlugins = includedPlugins)
 }

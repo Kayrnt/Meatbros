@@ -20,11 +20,14 @@ import com.typesafe.config.ConfigFactory
 import org.specs2.mutable.Specification
 import play.api.test.{PlaySpecification, TestBrowser, FakeApplication, TestServer}
 import securesocial.core.Authenticator
+import securesocial.testkit.WithLoggedUser._
+import play.api.test.TestServer
+import play.api.test.FakeApplication
 
 /**
  * Base class for SecureSocial tests
  */
-class BaseSpec extends PlaySpecification {
+trait BaseSpec extends PlaySpecification {
   val testConfiguration = ConfigFactory.load("tests")
   val appUrl = testConfiguration.getString("tests.serverUrl")
 

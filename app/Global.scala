@@ -13,7 +13,7 @@ object Global extends GlobalSettings {
     SessionFactory.concreteFactory = app.configuration.getString("db.default.driver") match {
       case Some("org.h2.Driver") =>{
         DBType.driverIsH2 = true
-        Some(() => getSession(new PostgreSqlAdapter, app))
+        Some(() => getSession(new H2Adapter, app))
       }
       case Some("org.postgresql.Driver") => {
         DBType.driverIsH2 = false

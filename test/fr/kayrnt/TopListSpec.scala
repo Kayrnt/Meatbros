@@ -27,11 +27,15 @@ import play.api.test.FakeApplication
  */
 class TopListSpec extends BaseSpec {
 
-  def app = FakeApplication(withoutPlugins = excludedPlugins, additionalPlugins = includedPlugins)
-
   "a top list" should {
 
-    "be inserted properly" in new WithLoggedUser(app) {
+    "be inserted properly" in new WithLoggedUser() {
+
+      def testUser(i : Long) = Person(i, "", "", "", None, None, true, "", "", "",
+        None, None, Some(""), None, None, None, None,
+        Some(""), true, false, new Timestamp(System.currentTimeMillis()))
+
+      (1 to 5).map(i => Person.insert(testUser(i)))
 
       val json = Json.obj(
         "rankings" -> Json.arr(
@@ -53,8 +57,9 @@ class TopListSpec extends BaseSpec {
       val person = Person.findByIdentity(user).get
       //      println("person test : "+person)
 
-      val expected = List(TopListPerson(1, 1, 2, 1), TopListPerson(2, 1, 3, 2), TopListPerson(3, 1, 4, 3))
+      val expected = List(TopListPerson(1, 6, 2, 1), TopListPerson(2, 6, 3, 2), TopListPerson(3, 6, 4, 3))
       val insideDB = TopListPerson.get(person.id)
+//            println("inside db: "+insideDB)
       insideDB must containAllOf(expected)
       //
       val json2 = Json.obj(
@@ -70,8 +75,9 @@ class TopListSpec extends BaseSpec {
 
       val result2 = TopListController.apply().apply(req2)
 
-      val expected2 = List(TopListPerson(3, 1, 4, 1), TopListPerson(4, 1, 5, 2), TopListPerson(5, 1, 6, 3))
+      val expected2 = List(TopListPerson(3, 6, 4, 1), TopListPerson(4, 6, 5, 2), TopListPerson(5, 6, 6, 3))
       val insideDB2 = TopListPerson.get(person.id)
+//      println("inside db 2 : "+insideDB2)
       insideDB2 must containAllOf(expected2)
     }
 

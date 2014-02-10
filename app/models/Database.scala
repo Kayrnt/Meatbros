@@ -53,9 +53,9 @@ object Database extends Schema with  PrimitiveTypeMode {
   }}
   
   try {
-//    create
-//  printDdl(s => println(""+s))
-//  Session.currentSession.setLogger(msg => Logger.info(msg))
+//    if(DBType.driverIsH2)
+      create
+  printDdl(s => println(""+s))
   } catch {
     case e : Throwable => println(" "+e.getMessage)
   }
