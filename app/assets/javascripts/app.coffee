@@ -15,8 +15,3 @@
 log = (args...) ->
   console.log.apply console, args if console.log?
 
-$ -> # document is ready!
-#/* card flip */
-  $(".flip").hover () ->
-    $(this).find(".card").toggleClass("flipped");
-    return false;

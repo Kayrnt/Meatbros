@@ -12,7 +12,7 @@ import views.html
  */
 object TopListController extends Controller with securesocial.core.SecureSocial {
 
-  case class Ranking(target: Long, position: Int)
+  case class Ranking(target: Long, position: Int, comment: Option[String])
 
   case class RankingList(rankings: List[Ranking])
 
@@ -34,7 +34,7 @@ object TopListController extends Controller with securesocial.core.SecureSocial 
             valid = {
               rl => rl.rankings.map {
                 r =>
-                  TopListPerson(0, user.id, r.target, r.position)
+                  TopListPerson(0, user.id, r.target, r.position, r.comment.getOrElse(""))
               }
             },
             invalid = {
@@ -57,6 +57,7 @@ object TopListController extends Controller with securesocial.core.SecureSocial 
     implicit request =>
       val user = Person.fromIdentity(request.user)
       val list = TopListPerson.get(userId)
-      Ok(html.account.list(userId, user, list))
+      if(userId == user.id) Ok(html.account.edit(user, list))
+      else Ok(html.account.list(userId, user, list))
   }
 }

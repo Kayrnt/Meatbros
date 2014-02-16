@@ -4,16 +4,18 @@
 
 # Default path will just redirect to the computer list
 GET         /                       controllers.Application.index
+GET         /all/:page              controllers.Application.all(page: Long)
 GET         /latest                 controllers.Application.latest()
 GET         /bro                    controllers.BroController.account()
 POST        /bro                    controllers.BroController.update()
 POST        /bro/upload             controllers.Upload.fileUploader()
 POST        /bro/delete             controllers.BroController.delete()
 GET         /bro/upload             controllers.Upload.fileUploaderGet()
-GET         /search/:searchString   controllers.Application.search(searchString)
-GET         /s                      controllers.Application.searchBox()
+GET         /bro/autocomplete/      controllers.Search.autoComplete()
+GET         /search/:searchString   controllers.Search.search(searchString)
+GET         /s                      controllers.Search.searchBox()
 
-POST        /bro/toplist            controllers.TopListController.apply()
+POST       /bro/toplist             controllers.TopListController.apply()
 GET        /bro/toplist             controllers.TopListController.edit()
 GET        /bro/toplist/:id         controllers.TopListController.list(id: Long)
 

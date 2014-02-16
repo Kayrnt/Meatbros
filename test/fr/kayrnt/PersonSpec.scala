@@ -18,11 +18,7 @@ class PersonSpec extends BaseSpec {
 
     "be inserted properly and retrieved" in new WithLoggedUser() {
 
-      ck
-
-      val beerbro = Person(0, "", "", "", None, None, true, "", "", "",
-        None, None, Some("Beerbro"), None, None, None, None,
-        Some("Parigo"), true, false, new Timestamp(System.currentTimeMillis()))
+      val beerbro = Person(0, broname = Some("Beerbro"), nationality = Some("Parigo"))
 
       Person.insert(beerbro) mustNotEqual null
 

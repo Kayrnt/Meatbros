@@ -11,6 +11,7 @@ Login = Connexion
 Logout = Déconnexion
 HowItWorks = Comment ça marche ?
 Search = Rechercher
+All = Tous
 MyAccount = Mon compte
 Team = L'équipe
 Website = Site web

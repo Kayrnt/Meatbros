@@ -1,0 +1,15 @@
+@(user: securesocial.core.Identity = null, pages: List[Int], bros : List[Person] = Nil, alert : InPageAlert = null)
+@base.main("Home", null, user) {
+@if(alert != null){
+@views.html.dialog.in_page_alert.render(alert)
+}
+<div class="page-search">
+    <div class="pagination-centered">
+               <div class="centered-auto">@pages.map { i =>
+                   <a href="/all/@i"> @i </a>
+                   }
+               </div>
+              @card.board(bros)
+    </div>
+</div>
+}

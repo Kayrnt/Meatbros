@@ -9,8 +9,9 @@ import helpers.SquerylEntryPoint._
  * Time: 04:24
  */
 
-case class TopListPerson(id: Long = 0, person_id: Long, target_person_id: Long, position: Int) {
+case class TopListPerson(id: Long = 0, person_id: Long, target_person_id: Long, position: Int, comment: String) {
 }
+case class TopListPersonItem(position: Long = 0, name: String, comment: String)
 
 object TopListPerson {
 

@@ -5,5 +5,36 @@
 <div class="pagination-centered login-box">
     <h1>Top List</h1>
 
+    <div id="alert"></div>
+
+    <ul class="sortable">
+        @for(item <- topList){
+        <li></li>
+        }
+        <li>Item 2</li>
+        <li>Item 3</li>
+        <li>Item 4</li>
+    </ul>
+
 </div>
+<script>
+    var list = $('.sortable');
+    list.sortable().bind('sortupdate', function() {
+        console.log("list : "+list)
+        var request = $.ajax({
+            url: "/bro/toplist",
+            type: "POST",
+            data: { id : 1 },
+            dataType: "application/json"
+        });
+
+        request.done(function( msg ) {
+            $( "#alert" ).html( msg );
+        });
+
+        request.fail(function( jqXHR, textStatus ) {
+            $( "#alert" ).html(textStatus);
+        });
+    });
+</script>
 }

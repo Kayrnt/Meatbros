@@ -55,17 +55,26 @@
                     <a href="/"><span class="fa fa-home"/></a>
                 </li>
                 @views.html.base.login_dropdown.render(user)
+
+                @if(title.equals("All")) {
+                <li class="active">
+                    } else {
+                <li>
+                    }
+                    <a href="@routes.Application.all(1)">@Messages("All")</a>
+                </li>
+
                 @if(title.equals("Latest")) {
                 <li class="active">
                     } else {
                 <li>
                     }
                     <a href="@routes.Application.latest()">@Messages("Latest")</a>
-
+                </li>
                 <li class="navbar-form navbar-right">
                     <form action="/s">
                         <div class="input-group" style="max-width: 200px">
-                            <input class="form-control" type="text" name="q" placeholder="@Messages(" Search")">
+                            <input class="form-control" type="text" name="q" placeholder="@Messages("Search")">
                             <span class="input-group-addon"><i class="fa fa-search icon-black"></i></span>
                         </div>
                     </form>
@@ -110,9 +119,12 @@
 <!-- The File Upload validation plugin -->
 <script type="text/javascript" src="@routes.Assets.at("javascripts/jquery.fileupload-validate.js")"></script>
 
+<script type="text/javascript" src="@routes.Assets.at("javascripts/jquery.sortable.min.js")"></script>
+
 <script type="text/javascript" src="@routes.Application.javascriptRoutes"></script>
 <script type="text/javascript" src="@routes.Assets.at("javascripts/app.js")"></script>
 <script type="text/javascript" src="@routes.Assets.at("javascripts/fileApp.js")"></script>
+<script type="text/javascript" src="@routes.Assets.at("javascripts/jsApp.js")"></script>
 
 
 <script>

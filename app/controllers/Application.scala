@@ -30,32 +30,30 @@ object Application extends Controller with securesocial.core.SecureSocial {
         where(p.isActive === true)
           select p
           orderBy rand()
-      ).page(0, 20).iterator.toList
+      ).page(0, 20).toList
     }
     Ok(html.index(user.orNull, db, inPageAlert))
   }
 
-  def search(query: String) = UserAwareAction {
+  def all(page: Long) = UserAwareAction {
     implicit request =>
-      val db = inTransaction {
-        Database.peopleTable.where(p => p.isActive === true and p.broname.map(b => b like s"%$query%")).iterator.toList
-      }
-      Ok(html.index(request.user.orNull, db, null))
-  }
+      if (page < 0)
+        BadRequest("page number < 1")
+      else {
+        val (itemCount,db) = inTransaction {
+          (from(Database.peopleTable)(p =>
+            where(p.isActive === true)
+              compute(count(p.id))
+          ).single.measures.toInt/20+1,
 
-  def searchBox = Action {
-    implicit request =>
-      val search = request.getQueryString("q")
-      try {
-        val uri: URI = new URI(search.getOrElse(""))
-        Redirect(routes.Application.search(uri.toASCIIString))
-      }
-      catch {
-        case e: URISyntaxException => {
-          Redirect(routes.Application.index)
+          from(Database.peopleTable)(p =>
+            where(p.isActive === true)
+              select p
+          ).page(((page - 1) * 20).toInt, (page * 20).toInt).toList)
         }
-      }
 
+        Ok(html.all(request.user.orNull, (1 to itemCount).toList, db, null))
+      }
   }
 
   // -- Actions
@@ -74,7 +72,7 @@ object Application extends Controller with securesocial.core.SecureSocial {
           where(p.isActive === true)
             select p
             orderBy (p.creationDate desc)
-        ).page(0, 20).iterator.toList
+        ).page(0, 20).toList
       }
       Ok(html.index(request.user.orNull, db, null))
   }
@@ -85,9 +83,9 @@ object Application extends Controller with securesocial.core.SecureSocial {
     implicit request =>
       Ok(
         Routes.javascriptRouter("jsRoutes")(
-        routes.javascript.TopListController.apply
+          routes.javascript.TopListController.apply
         )
       ).as("text/javascript")
   }
 }
-            
+

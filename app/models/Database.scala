@@ -53,7 +53,7 @@ object Database extends Schema with  PrimitiveTypeMode {
   }}
   
   try {
-//    if(DBType.driverIsH2)
+    if(DBType.driverIsH2)
       create
   printDdl(s => println(""+s))
   } catch {

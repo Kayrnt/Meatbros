@@ -18,26 +18,27 @@ import scala.Some
 import securesocial.core.OAuth2Info
 import securesocial.core.PasswordInfo
 
-case class Person(id: Long, user_id: String,
-                  auth_method: String,
-                  provider_id: String,
-                  avatar_url: Option[String],
-                  broGifUuid: Option[String],
-                  isMale: Boolean,
-                  firstName: String,
-                  lastName: String,
-                  fullName: String,
-                  email: Option[String],
-                  phone_number: Option[String],
-                  broname: Option[String],
-                  twitter: Option[String],
-                  facebook: Option[String],
-                  instagram: Option[String],
-                  website: Option[String],
-                  nationality: Option[String],
-                  isActive: Boolean,
-                  isEmailVisible: Boolean,
-                   creationDate: Timestamp) extends securesocial.core.Identity {
+case class Person(id: Long,
+                  user_id: String = "",
+                  auth_method: String = "",
+                  provider_id: String = "",
+                  avatar_url: Option[String] = None,
+                  broGifUuid: Option[String] = None,
+                  isMale: Boolean = true,
+                  firstName: String = "",
+                  lastName: String = "",
+                  fullName: String = "",
+                  email: Option[String] = None,
+                  phone_number: Option[String] = None,
+                  broname: Option[String] = None,
+                  twitter: Option[String] = None,
+                  facebook: Option[String] = None,
+                  instagram: Option[String] = None,
+                  website: Option[String] = None,
+                  nationality: Option[String] = None,
+                  isActive: Boolean = false,
+                  isEmailVisible: Boolean  = false,
+                   creationDate: Timestamp = new Timestamp(System.currentTimeMillis())) extends securesocial.core.Identity {
 
   lazy val oauth1CredentialSets: OneToMany[OAuth1CredentialSet] =
     Database.personToOAuth1Info.left(this)
