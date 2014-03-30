@@ -43,13 +43,13 @@ object Application extends Controller with securesocial.core.SecureSocial {
         val (itemCount,db) = inTransaction {
           (from(Database.peopleTable)(p =>
             where(p.isActive === true)
-              compute(count(p.id))
+              compute count(p.id)
           ).single.measures.toInt/20+1,
 
           from(Database.peopleTable)(p =>
             where(p.isActive === true)
               select p
-          ).page(((page - 1) * 20).toInt, (page * 20).toInt).toList)
+          ).page(((page - 1) * 20).toInt, 20).toList)
         }
 
         Ok(html.all(request.user.orNull, (1 to itemCount).toList, db, null))

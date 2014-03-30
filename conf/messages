@@ -15,6 +15,7 @@ All = All
 MyAccount = My Account
 Team = Team
 Website = Website
+website.goal = This website present some of the regulars meatspace community, anyone can register.
 
 index.search = Search a bro...
 search.nothing = No result was found ! Please try another request !

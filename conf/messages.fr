@@ -15,6 +15,7 @@ All = Tous
 MyAccount = Mon compte
 Team = L'équipe
 Website = Site web
+website.goal = Ce site internet présente certains des habitués de la communauté meatspace, tout le monde peut s'enregistrer.
 
 index.search = Chercher un bro
 search.nothing = Aucun bro trouvé ! Merci de ressayer !
