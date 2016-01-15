@@ -3,6 +3,8 @@ Meatbros
 
 This project is a Meatspace oriented public repertory with animated gif. People register their account and put their online social information.
 
+I host the project at http://meatbros.kayrnt.fr
+
 Using it
 --------
 
